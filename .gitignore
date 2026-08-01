@@ -1,0 +1,5 @@
+# 文字檔案（草稿）
+*.txt
+
+# macOS
+.DS_Store

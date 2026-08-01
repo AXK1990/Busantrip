@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>釜山 6 日美食探索之旅 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600&family=Noto+Serif+TC:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ocean:#e8f3f7; --sea:#d4e8ef; --marine:#5b9aad;
+  --deep:#1a3847; --coral:#e86c5e; --sand:#f4e4d7;
+  --muted:#7a8a94; --white:#fdfcfb;
+  --warning:#ffc107; --warning-bg:#fff8e1;
+  --pending:#ff9800; --pending-bg:#fff3e0;
+  --font-scale:1.0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--ocean);color:var(--deep);font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.7;min-height:100vh;font-size:calc(16px * var(--font-scale));}
+body.font-small{--font-scale:0.95;}
+body.font-medium{--font-scale:1.1;}
+body.font-large{--font-scale:1.25;}
+
+/* ── HERO ── */
+.hero{background:var(--deep);color:var(--ocean);padding:56px 24px 48px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(91,154,173,.22) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(232,108,94,.16) 0%,transparent 50%);}
+.hero-tag{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--coral);margin-bottom:16px;position:relative;}
+.hero h1{font-family:'Noto Serif TC',serif;font-size:clamp(34px,8vw,60px);font-weight:300;line-height:1.1;position:relative;margin-bottom:8px;}
+.hero h1 em{font-style:normal;color:var(--marine);font-weight:400;}
+.hero-sub{font-size:12px;color:rgba(232,243,247,.55);letter-spacing:2px;text-transform:uppercase;position:relative;margin-top:10px;}
+.hero-pills{display:flex;justify-content:center;gap:12px;margin-top:32px;position:relative;flex-wrap:wrap;}
+.hero-pill{background:rgba(232,243,247,.08);border:1px solid rgba(232,243,247,.15);border-radius:100px;padding:7px 16px;font-size:12px;letter-spacing:.5px;}
+.hero-pill span{color:var(--coral);margin-right:5px;}
+
+/* ── FONT SIZE CONTROL ── */
+.font-control{background:var(--deep);padding:8px 20px;display:flex;justify-content:flex-end;align-items:center;gap:8px;border-bottom:1px solid rgba(232,243,247,.1);}
+.font-control-label{font-size:11px;color:rgba(232,243,247,.5);letter-spacing:1px;}
+.font-btn{background:rgba(232,243,247,.08);border:1px solid rgba(232,243,247,.2);color:var(--ocean);padding:6px 12px;border-radius:6px;cursor:pointer;font-size:13px;transition:all .2s;font-family:'Noto Sans TC',sans-serif;}
+.font-btn:hover{background:rgba(232,243,247,.15);}
+.font-btn.active{background:var(--coral);border-color:var(--coral);color:white;}
+
+/* ── TABS ── */
+.nav-tabs{display:flex;background:var(--deep);overflow-x:auto;scrollbar-width:none;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.tab-btn{flex-shrink:0;padding:13px 18px;font-family:'Noto Sans TC',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(232,243,247,.4);background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
+.tab-btn.active,.tab-btn:hover{color:var(--ocean);border-bottom-color:var(--coral);}
+
+/* ── LAYOUT ── */
+.container{max-width:780px;margin:0 auto;padding:32px 20px 64px;}
+.section{display:none;}
+.section.active{display:block;}
+.section-header{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--sea);}
+
+/* ── CARDS ── */
+.card{background:var(--white);border-radius:12px;padding:24px;margin-bottom:16px;border:1px solid var(--sea);}
+.card-title{font-family:'Noto Serif TC',serif;font-size:22px;font-weight:400;margin-bottom:4px;display:flex;align-items:center;gap:10px;}
+.card-subtitle{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;}
+.card-body{font-size:14px;line-height:1.8;color:#2a3847;}
+
+/* ── DAY CARDS ── */
+.day-card{background:var(--white);border-radius:12px;margin-bottom:12px;border:1px solid var(--sea);overflow:hidden;}
+.day-header{display:flex;align-items:center;padding:16px 20px;cursor:pointer;gap:16px;transition:background .2s;}
+.day-header:hover{background:var(--ocean);}
+.day-num{font-family:'Noto Serif TC',serif;font-size:30px;font-weight:300;color:var(--coral);line-height:1;min-width:46px;}
+.day-info{flex:1;}
+.day-title{font-family:'Noto Serif TC',serif;font-size:18px;font-weight:400;}
+.day-date{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.day-toggle{color:var(--muted);font-size:18px;transition:transform .3s;}
+.day-card.open .day-toggle{transform:rotate(180deg);}
+.day-body{display:none;padding:0 20px 22px;border-top:1px solid var(--sea);}
+.day-card.open .day-body{display:block;}
+
+/* ── TIMELINE ── */
+.timeline{margin-top:18px;}
+.tl-item{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start;}
+.tl-time{font-size:11px;color:var(--muted);letter-spacing:1px;min-width:46px;padding-top:3px;text-align:right;flex-shrink:0;}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--sea);border:2px solid var(--coral);margin-top:5px;flex-shrink:0;}
+.tl-dot.hi{background:var(--coral);}
+.tl-content{flex:1;font-size:13.5px;}
+.tl-title{font-weight:500;font-size:14px;margin-bottom:4px;}
+.tl-desc{font-size:13px;color:#4a5860;line-height:1.75;}
+.tl-links{margin-top:6px;}
+
+/* ── LINKS & BADGES ── */
+.ml,.wl{display:inline-flex;align-items:center;gap:4px;font-size:11px;padding:3px 10px;border-radius:100px;text-decoration:none;margin-top:4px;margin-right:4px;font-weight:500;transition:opacity .2s;}
+.ml:hover,.wl:hover{opacity:.7;}
+.ml{background:#e8f0fe;color:#1a73e8;}
+.wl{background:#fce8dc;color:var(--coral);}
+.pending-badge{display:inline-block;background:var(--pending-bg);color:var(--pending);font-size:10px;padding:2px 8px;border-radius:100px;letter-spacing:1px;margin-left:8px;vertical-align:middle;}
+.alert-badge{display:inline-block;background:var(--warning-bg);color:#856404;font-size:10px;padding:2px 8px;border-radius:100px;letter-spacing:1px;margin-left:8px;vertical-align:middle;}
+.success-badge{display:inline-block;background:#d4edda;color:#155724;font-size:10px;padding:2px 8px;border-radius:100px;letter-spacing:1px;margin-left:8px;vertical-align:middle;}
+
+/* ── FLIGHT CARD ── */
+.flight-card{background:var(--deep);color:var(--ocean);border-radius:12px;padding:20px 24px;margin-bottom:12px;}
+.flight-no{display:inline-block;background:var(--coral);color:white;font-size:11px;padding:2px 10px;border-radius:100px;letter-spacing:1px;margin-bottom:8px;}
+.flight-route{display:flex;align-items:center;gap:10px;margin:10px 0 6px;}
+.flight-city{font-family:'Noto Serif TC',serif;font-size:28px;font-weight:300;}
+.flight-arrow{flex:1;text-align:center;color:var(--coral);font-size:18px;}
+.flight-meta{font-size:12px;color:rgba(232,243,247,.5);letter-spacing:1px;line-height:1.6;}
+
+/* ── RESTAURANT LIST ── */
+.rest-category{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--coral);margin:22px 0 10px;font-weight:500;}
+.rest-item{padding:14px 0;border-bottom:1px solid var(--sea);}
+.rest-item:last-child{border-bottom:none;}
+.rest-name{font-size:14px;font-weight:500;}
+.rest-location{font-size:12px;color:var(--marine);margin:3px 0;}
+.rest-desc{font-size:13px;color:#4a5860;line-height:1.7;margin-top:3px;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">✦ Busan Gourmet Journey · Korea 2026 ✦</div>
+  <h1>釜山<br><em>六日美食探索之旅</em></h1>
+  <div class="hero-sub">海景咖啡 × 韓式烤肉 × 文藝海岸</div>
+  <div class="hero-pills">
+    <div class="hero-pill"><span>✈</span>2026年8月11日 — 8月16日</div>
+    <div class="hero-pill"><span>👥</span>同行探索</div>
+    <div class="hero-pill"><span>🏨</span>西面 + 廣安里民宿</div>
+  </div>
+</div>
+
+<!-- FONT SIZE CONTROL -->
+<div class="font-control">
+  <span class="font-control-label">字體大小：</span>
+  <button class="font-btn" onclick="setFontSize('small')">A-</button>
+  <button class="font-btn active" onclick="setFontSize('medium')">A</button>
+  <button class="font-btn" onclick="setFontSize('large')">A+</button>
+</div>
+
+<!-- TABS -->
+<div class="nav-tabs">
+  <button class="tab-btn active" onclick="showTab('itinerary',this)">行程總覽</button>
+  <button class="tab-btn" onclick="showTab('restaurants',this)">美食清單</button>
+  <button class="tab-btn" onclick="showTab('transport',this)">交通資訊</button>
+  <button class="tab-btn" onclick="showTab('notes',this)">注意事項</button>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════
+     TAB 1：行程總覽
+══════════════════════════════════════ -->
+<div id="itinerary" class="section active">
+  <div class="section-header">每日行程</div>
+
+  <!-- Day 1 -->
+  <div class="day-card" onclick="toggleDay(this)">
+    <div class="day-header">
+      <div class="day-num">01</div>
+      <div class="day-info">
+        <div class="day-title">出發與抵達釜山</div>
+        <div class="day-date">8月11日（二）</div>
+      </div>
+      <div class="day-toggle">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-time">16:40</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">IT606 班機由台灣桃園啟程</div>
+            <div class="tl-desc">搭乘台灣虎航 IT606 航班出發，預計飛行時間約 2 小時 15 分。</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">19:55</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">抵達釜山金海機場</div>
+            <div class="tl-desc">班機抵達釜山金海國際機場，辦理入境通關手續。</div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=Gimhae+International+Airport+Busan" target="_blank">📍 金海國際機場</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">20:30</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">KLOOK 專車接送至西面飯店</div>
+            <div class="tl-desc">
+              通關後搭乘 KLOOK 預訂的專車接送服務，前往西面 South Vandeco Hotel。<br>
+              車型：1-6 人座（可容納 6 人 + 6 件隨身行李）<br>
+              車程約 40-50 分鐘。
+            </div>
+            <div class="tl-links"></div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">21:30</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">辦理入住・South Vandeco Hotel</div>
+            <div class="tl-desc">
+              抵達西面商圈的 South Vandeco Hotel，辦理入住手續（入住時間 15:00 後）。<br>
+              地址：釜山鎮區西面路 616-4（西面站步行約 5 分鐘）<br>
+              房型：豪華雙人房-附浴缸 × 2 間
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=South+Vandeco+Hotel+Busan" target="_blank">📍 South Vandeco Hotel</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">晚餐</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">西面商圈晚餐</div>
+            <div class="tl-desc">
+              飯店位於西面商圈，周邊餐廳林立，可依當日體力彈性選擇附近餐廳用餐。
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-card" onclick="toggleDay(this)">
+    <div class="day-header">
+      <div class="day-num">02</div>
+      <div class="day-info">
+        <div class="day-title">松島至影島周邊探索</div>
+        <div class="day-date">8月12日（三）· 松島 → 南浦 → 影島 → 西面</div>
+      </div>
+      <div class="day-toggle">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-time">早餐</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">西面/田浦商圈早餐</div>
+            <div class="tl-desc">
+              推薦選項：<br>
+              • SOUP or SALAD（西面）<br>
+              • Your Type Jeonpo（田浦商圈）
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=SOUP+or+SALAD+Seomyeon+Busan" target="_blank">📍 SOUP or SALAD</a>
+              <a class="ml" href="https://maps.google.com/?q=Your+Type+Jeonpo+Busan" target="_blank">📍 Your Type Jeonpo</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往松島</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Songdo Cable Car</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Busan Air Cruise</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">松島纜車 & 松島海水浴場</div>
+            <div class="tl-desc">
+              搭乘松島纜車（Busan Air Cruise）欣賞釜山海岸線美景，松島海水浴場是韓國最早的海水浴場之一。<br>
+              營業時間：09:00-22:00（末班前 30 分鐘停止售票）
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=부산광역시+서구+송도해변로+171" target="_blank">📍 松島纜車站</a>
+              <a class="wl" href="https://busanaircruise.co.kr/" target="_blank">🌐 官網</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往南浦</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">BIFF Square Nampo</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Lotte Department Store Gwangbok</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">南浦洞美食 & 樂天百貨展望台</div>
+            <div class="tl-desc">
+              • 南浦站 BIFF 廣場糖餅<br>
+              • 炸豬排笑 톤쇼우 남포점（午餐）<br>
+              • 樂天百貨光復店展望台（免費觀景）
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=BIFF+Square+Nampo+Busan" target="_blank">📍 BIFF 廣場</a>
+              <a class="ml" href="https://maps.google.com/?q=톤쇼우+남포점+Busan" target="_blank">📍 炸豬排笑 南浦店</a>
+              <a class="ml" href="https://maps.google.com/?q=Lotte+Department+Store+Gwangbok+Busan" target="_blank">📍 樂天百貨光復店</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往影島</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Huinnyeoul Culture Village</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Jeoryeong Coastal Walk</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">白淺灘文化村 & 絕影海岸散步道</div>
+            <div class="tl-desc">
+              影島西側海岸的白淺灘文化村，建議沿著絕影海岸散步道欣賞海景。
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=白淺灘文化村+釜山" target="_blank">📍 白淺灘文化村</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往西面</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Old Mansion Seomyeon</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Seomyeon Station</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">晚餐</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">西面老宅邸燒肉 Old Mansion</div>
+            <div class="tl-desc">
+              主選：西面老宅邸燒肉 Old Mansion<br>
+              備選：濟州間、雪夜覓
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=Old+Mansion+Seomyeon+Busan" target="_blank">📍 Old Mansion</a>
+              <a class="ml" href="https://maps.google.com/?q=濟州間+西面+釜山" target="_blank">📍 濟州間</a>
+              <a class="ml" href="https://maps.google.com/?q=雪夜覓+西面+釜山" target="_blank">📍 雪夜覓</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-card" onclick="toggleDay(this)">
+    <div class="day-header">
+      <div class="day-num">03</div>
+      <div class="day-info">
+        <div class="day-title">藝文與海景體驗</div>
+        <div class="day-date">8月13日（四）· 影島 ARTE → 西面 → 廣安里</div>
+      </div>
+      <div class="day-toggle">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往 ARTE MUSEUM</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">ARTE MUSEUM Busan</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">ARTE MUSEUM Busan</div>
+            <div class="tl-desc">
+              沉浸式數位藝術展覽空間，適合拍照與藝術體驗。<br>
+              營業時間：10:00-20:00
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=ARTE+MUSEUM+Busan" target="_blank">📍 ARTE MUSEUM</a>
+              <a class="wl" href="https://artemuseum.com/BUSAN" target="_blank">🌐 官網</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">午餐</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">午餐選擇</div>
+            <div class="tl-desc">
+              • 再起豬肉湯飯<br>
+              • 1969海鮮刀削麵
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=재기돼지국밥+釜山" target="_blank">📍 再起豬肉湯飯</a>
+              <a class="ml" href="https://maps.google.com/?q=1969海鮮刀削麵+釜山" target="_blank">📍 1969海鮮刀削麵</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">複合空間探索</div>
+            <div class="tl-desc">
+              • P.ARK 複合空間<br>
+              • P.ARK Cafe<br>
+              • 星巴克青鶴 DT 店<br>
+              • Momos影島店
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=P.ARK+Busan" target="_blank">📍 P.ARK 複合空間</a>
+              <a class="ml" href="https://maps.google.com/?q=Starbucks+Cheonghak+DT+Busan" target="_blank">📍 星巴克青鶴 DT</a>
+              <a class="ml" href="https://maps.google.com/?q=Momos+Yeongdo+Busan" target="_blank">📍 Momos 影島店</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往田浦咖啡街</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Jeonpo Cafe Street</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Seomyeon Station</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">傍晚</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">田浦咖啡街巡禮</div>
+            <div class="tl-desc">
+              探索田浦洞特色咖啡街，品嚐精品咖啡與甜點。
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=Jeonpo+Cafe+Street+전포카페거리+Busan" target="_blank">📍 田浦咖啡街</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往廣安里民宿</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Gwangalli Beach</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Gwangan Station</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">傍晚</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">The Hew Kwan 民宿 Check-in</div>
+            <div class="tl-desc">
+              前往廣安里的 The Hew Kwan 民宿辦理入住手續。民宿距離廣安站步行 5 分鐘，距海灘 3 分鐘，擁有寬敞露台可欣賞海景與廣安大橋。
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=Gwangalli+Beach+Busan" target="_blank">📍 廣安里海灘區</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">晚餐</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">廣安里周邊晚餐</div>
+            <div class="tl-desc">
+              選項：<br>
+              • 高結 (GoGyeol) 韓式烤肉店<br>
+              • 民樂廣場<br>
+              • Jojo 刀削麵<br>
+              • 安木豬肉湯飯
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=GoGyeol+고결+Gwangalli+Busan" target="_blank">📍 高結 GoGyeol</a>
+              <a class="ml" href="https://maps.google.com/?q=민락광장+Busan" target="_blank">📍 民樂廣場</a>
+              <a class="ml" href="https://maps.google.com/?q=Jojo+칼국수+Gwangalli+Busan" target="_blank">📍 Jojo 刀削麵</a>
+              <a class="ml" href="https://maps.google.com/?q=안목돼지국밥+광안리+Busan" target="_blank">📍 安木豬肉湯飯</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="day-card" onclick="toggleDay(this)">
+    <div class="day-header">
+      <div class="day-num">04</div>
+      <div class="day-info">
+        <div class="day-title">海雲台、膠囊列車與經典湯飯</div>
+        <div class="day-date">8月14日（五）· 廣安里 → 東柏島 → 海雲台 → 青沙浦 → 中洞</div>
+      </div>
+      <div class="day-toggle">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-time">09:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">早餐：La Feuille</div>
+            <div class="tl-desc">廣安里的法式早餐餐廳，享用優雅的早晨時光。</div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=La+Feuille+Gwangalli+Busan" target="_blank">📍 La Feuille</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往東柏島</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Dongbaek Island</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Nurimaru APEC House</code>
+            </div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px;">車程約 15 分鐘</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">11:15</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">東柏島環島步道 & APEC 世峰樓</div>
+            <div class="tl-desc">
+              漫步東柏島海岸散步道，欣賞海景與五六島風光，並參觀 APEC 世峰樓。
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=東柏島+釜山" target="_blank">📍 東柏島</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">13:00</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">午餐：嚴湧帛豬肉湯飯 海雲台店</div>
+            <div class="tl-desc">
+              主選：嚴湧帛豬肉湯飯<br>
+              備選：水邊 or 海木鰻魚
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=엄용백+해운대점+Busan" target="_blank">📍 嚴湧帛豬肉湯飯 海雲台店</a>
+              <a class="ml" href="https://maps.google.com/?q=水邊+해운대+Busan" target="_blank">📍 水邊</a>
+              <a class="ml" href="https://maps.google.com/?q=해목+장어+해운대+Busan" target="_blank">📍 海木鰻魚</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往尾浦站</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Mipo Station</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Busan Blue Line Park Mipo</code>
+            </div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px;">車程約 5-7 分鐘，預計 15:00 前抵達</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">16:00</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">天空膠囊列車（尾浦站出發）</div>
+            <div class="tl-desc">
+              需提前報到！搭乘海雲台天空膠囊列車，沿著海岸線欣賞絕美海景。<br>
+              路線：尾浦站 → 青沙浦站
+            </div>
+            <div class="tl-links">
+              <a class="wl" href="https://www.blueline.co.kr/" target="_blank">🌐 官網預約</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">16:45</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">青沙浦咖啡時光</div>
+            <div class="tl-desc">
+              推薦咖啡廳：<br>
+              • Café Liberta（青沙浦）<br>
+              • Dalmaji Relove
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=Café+Liberta+Cheongsapo+Busan" target="_blank">📍 Café Liberta</a>
+              <a class="ml" href="https://maps.google.com/?q=Dalmaji+Relove+달맞이+Busan" target="_blank">📍 Dalmaji Relove</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">🚕</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">Uber 前往中洞站</div>
+            <div class="tl-desc" style="background:var(--sand);padding:10px;border-radius:6px;margin-top:6px;">
+              <strong>Uber 目的地（可複製）：</strong><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Jungdong Station</code><br>
+              <code style="background:white;padding:2px 6px;border-radius:3px;font-size:13px;display:inline-block;margin-top:4px;">Samhwan Chugsan Jungdong</code>
+            </div>
+            <div style="font-size:12px;color:var(--muted);margin-top:6px;">車程約 15-20 分鐘</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">19:00</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">晚餐：Samhwan Chugsan 中洞店</div>
+            <div class="tl-desc">韓式烤肉晚餐，品嚐高品質的韓牛與豬肉。</div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=삼환축산+중동점+Busan" target="_blank">📍 Samhwan Chugsan 中洞店</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="day-card" onclick="toggleDay(this)">
+    <div class="day-header">
+      <div class="day-num">05</div>
+      <div class="day-info">
+        <div class="day-title">自由探索日</div>
+        <div class="day-date">8月15日（六）<span class="pending-badge">行程待補充</span></div>
+      </div>
+      <div class="day-toggle">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-time">早餐</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">早餐選擇</div>
+            <div class="tl-desc">
+              • Momos Flagship<br>
+              • working holiday
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=Momos+Flagship+Busan" target="_blank">📍 Momos Flagship</a>
+              <a class="ml" href="https://maps.google.com/?q=working+holiday+cafe+Busan" target="_blank">📍 working holiday</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">上午</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">新世界百貨</div>
+            <div class="tl-desc">
+              <span class="pending-badge">待規劃</span><br>
+              釜山新世界百貨 Centum City，世界最大百貨公司之一。
+            </div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=Shinsegae+Centum+City+Busan" target="_blank">📍 新世界百貨 Centum City</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">中午</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">午餐：海雲台海木鰻魚飯</div>
+            <div class="tl-desc">品嚐釜山特色的鰻魚料理。</div>
+            <div class="tl-links">
+              <a class="ml" href="https://maps.google.com/?q=해목+장어+해운대+Busan" target="_blank">📍 海雲台海木鰻魚飯</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">下午</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">下午行程</div>
+            <div class="tl-desc">
+              <span class="pending-badge">全天行程待規劃</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 6 -->
+  <div class="day-card" onclick="toggleDay(this)">
+    <div class="day-header">
+      <div class="day-num">06</div>
+      <div class="day-info">
+        <div class="day-title">賦歸</div>
+        <div class="day-date">8月16日（日）· 釜山 → 台北</div>
+      </div>
+      <div class="day-toggle">▾</div>
+    </div>
+    <div class="day-body">
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-time">白天</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content">
+            <div class="tl-title">白天行程</div>
+            <div class="tl-desc">
+              <span class="pending-badge">行程待規劃</span><br>
+              視航班時間彈性安排最後採買或景點參觀。
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">20:45</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">IT607 班機起飛</div>
+            <div class="tl-desc">台灣虎航 IT607 由釜山金海機場起飛返回台灣。</div>
+          </div>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-time">22:10</div>
+          <div class="tl-dot hi"></div>
+          <div class="tl-content">
+            <div class="tl-title">抵達台灣桃園機場</div>
+            <div class="tl-desc">帶著美好的回憶返回台灣！</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div><!-- /itinerary -->
+
+<!-- ══════════════════════════════════════
+     TAB 2：美食清單
+══════════════════════════════════════ -->
+<div id="restaurants" class="section">
+  <div class="section-header">釜山美食地圖</div>
+
+  <div class="card">
+    <div class="rest-category">📍 西面 / 田浦</div>
+
+    <div class="rest-item">
+      <div class="rest-name">西面老宅邸燒肉 Old Mansion</div>
+      <div class="rest-desc">韓式烤肉｜老宅改建的烤肉餐廳，氛圍佳，肉質優良。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=Old+Mansion+Seomyeon+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">SOUP or SALAD</div>
+      <div class="rest-desc">早午餐｜健康的湯品與沙拉選擇。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=SOUP+or+SALAD+Seomyeon+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">Your Type Jeonpo</div>
+      <div class="rest-desc">早午餐咖啡｜田浦洞人氣早午餐咖啡廳。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=Your+Type+Jeonpo+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">濟州間</div>
+      <div class="rest-desc">晚餐備選｜西面晚餐備選方案。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=濟州間+西面+釜山" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">雪夜覓</div>
+      <div class="rest-desc">晚餐備選｜西面晚餐備選方案。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=雪夜覓+西面+釜山" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-category">📍 南浦 / 影島</div>
+
+    <div class="rest-item">
+      <div class="rest-name">BIFF 廣場糖餅</div>
+      <div class="rest-desc">街頭小吃｜釜山必吃的傳統糖餅，外酥內軟，內餡甜美。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=BIFF+Square+Nampo+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">炸豬排笑 톤쇼우 남포점</div>
+      <div class="rest-desc">日式炸豬排｜酥脆多汁的日式炸豬排專門店。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=톤쇼우+남포점+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">再起豬肉湯飯</div>
+      <div class="rest-desc">韓式湯飯｜傳統豬肉湯飯專門店。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=재기돼지국밥+釜山" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">1969海鮮刀削麵</div>
+      <div class="rest-desc">麵食｜海鮮豐富的刀削麵，湯頭鮮美。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=1969海鮮刀削麵+釜山" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">Momos影島店</div>
+      <div class="rest-desc">咖啡廳｜連鎖咖啡廳，舒適環境。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=Momos+Yeongdo+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">P.ARK Cafe</div>
+      <div class="rest-desc">咖啡廳｜P.ARK 複合文化空間內的咖啡廳。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=P.ARK+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">星巴克青鶴 DT 店</div>
+      <div class="rest-desc">咖啡廳｜特色星巴克門市。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=Starbucks+Cheonghak+DT+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-category">📍 廣安里</div>
+
+    <div class="rest-item">
+      <div class="rest-name">La Feuille</div>
+      <div class="rest-desc">法式早餐｜法式風格早餐餐廳，優雅環境。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=La+Feuille+Gwangalli+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">高結 (GoGyeol) 韓式烤肉店</div>
+      <div class="rest-desc">韓式烤肉｜廣安里海岸附近的人氣烤肉店。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=GoGyeol+고결+Gwangalli+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">Jojo 刀削麵</div>
+      <div class="rest-desc">麵食｜特色刀削麵餐廳。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=Jojo+칼국수+Gwangalli+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">安木豬肉湯飯</div>
+      <div class="rest-desc">韓式湯飯｜在地人推薦的豬肉湯飯。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=안목돼지국밥+광안리+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-category">📍 海雲台 / 青沙浦 / 中洞</div>
+
+    <div class="rest-item">
+      <div class="rest-name">嚴湧帛豬肉湯飯 海雲台店</div>
+      <div class="rest-desc">韓式湯飯｜釜山經典豬肉湯飯，湯頭濃郁，肉質軟嫩。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=엄용백+해운대점+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">海雲台海木鰻魚飯</div>
+      <div class="rest-desc">鰻魚料理｜釜山特色鰻魚料理，鮮美軟嫩。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=해목+장어+해운대+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">Café Liberta</div>
+      <div class="rest-desc">海景咖啡｜青沙浦海景咖啡廳。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=Café+Liberta+Cheongsapo+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">Dalmaji Relove</div>
+      <div class="rest-desc">海景咖啡｜達瑪之丘海景咖啡廳，氛圍浪漫。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=Dalmaji+Relove+달맞이+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-item">
+      <div class="rest-name">Samhwan Chugsan 中洞店</div>
+      <div class="rest-desc">韓式烤肉｜高品質韓牛與豬肉，適合晚餐聚餐。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=삼환축산+중동점+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+    <div class="rest-category">📍 其他</div>
+
+    <div class="rest-item">
+      <div class="rest-name">Momos Flagship</div>
+      <div class="rest-desc">咖啡廳｜Momos 旗艦店。</div>
+      <div style="margin-top:6px;">
+        <a class="ml" href="https://maps.google.com/?q=Momos+Flagship+Busan" target="_blank">📍 地址</a>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /restaurants -->
+
+<!-- ══════════════════════════════════════
+     TAB 3：交通資訊
+══════════════════════════════════════ -->
+<div id="transport" class="section">
+  <div class="section-header">航班資訊</div>
+
+  <div class="flight-card">
+    <div class="flight-no">IT606 · 去程</div>
+    <div class="flight-route">
+      <div><div class="flight-city">TPE</div><div class="flight-meta">16:40 台灣桃園</div></div>
+      <div class="flight-arrow">✈ ────</div>
+      <div style="text-align:right"><div class="flight-city">PUS</div><div class="flight-meta">19:55 釜山金海</div></div>
+    </div>
+    <div class="flight-meta">2026年8月11日（二）· 台灣虎航 · 飛行時間約 2 小時 15 分</div>
+  </div>
+
+  <div class="flight-card">
+    <div class="flight-no">IT607 · 回程</div>
+    <div class="flight-route">
+      <div><div class="flight-city">PUS</div><div class="flight-meta">20:45 釜山金海</div></div>
+      <div class="flight-arrow">✈ ────</div>
+      <div style="text-align:right"><div class="flight-city">TPE</div><div class="flight-meta">22:10 台灣桃園</div></div>
+    </div>
+    <div class="flight-meta">2026年8月16日（日）· 台灣虎航 · 飛行時間約 2 小時 25 分</div>
+  </div>
+
+  <div style="height:24px"></div>
+  <div class="section-header">專車接送</div>
+
+  <!-- KLOOK Airport Transfer -->
+  <div class="card" style="padding:18px 20px;">
+    <div class="card-title" style="font-size:18px;">🚐 機場接送：KLOOK 專車</div>
+    <div class="card-body" style="font-size:13px; margin-top:8px;">
+      <strong>路線：</strong>金海機場 (PUS) → South Vandeco Hotel (西面站)<br>
+      <strong>日期：</strong>2026-08-11 (GMT+9)<br>
+      <strong>車型：</strong>1-6 人座（可容納 6 位乘客 + 6 件隨身行李）<br>
+      <strong>集合：</strong>金海國際機場一樓入境大廳集合點<br>
+      <strong>車程：</strong>約 40-50 分鐘<br>
+    </div>
+  </div>
+
+  <div style="height:24px"></div>
+  <div class="section-header">市區交通說明</div>
+
+  <div class="card">
+    <div class="card-title">🚕 Uber 叫車資訊</div>
+    <div class="card-body">
+      <strong>App 語言支援：</strong>Uber app 支援英文、韓文、簡體中文輸入<br>
+      <strong>建議輸入：</strong>使用英文地名最為保險，每個景點間的交通項目都已提供英文目的地名稱<br>
+      <strong>使用方式：</strong>直接複製行程中的英文地名貼到 Uber app 即可<br><br>
+      <strong>備註：</strong>釜山市區所有景點間移動皆使用 Uber 計程車
+    </div>
+  </div>
+
+  <div style="height:24px"></div>
+  <div class="section-header">住宿資訊</div>
+
+  <!-- Hotel 1 -->
+  <div class="card">
+    <div style="display:inline-block;background:var(--marine);color:white;font-size:10px;padding:2px 10px;border-radius:100px;letter-spacing:1px;margin-bottom:10px;">8/11 — 8/13 · 2 晚</div>
+    <div class="card-title">🏨 South Vandeco Hotel 飯店</div>
+    <div class="card-subtitle">豪華雙人房-附浴缸 × 2 間 · 西面商圈</div>
+    <div class="card-body">
+      位於釜山最熱鬧的西面商圈，鄰近西面站（步行約 5 分鐘），周邊餐廳、咖啡廳、商店林立，交通便利。<br><br>
+      <strong>地址：</strong>釜山鎮區西面路 616-4（부산광역시 부산진구 서면로 6）<br>
+      <strong>電話：</strong>+82 10 7134 8043<br>
+      <strong>入住：</strong>8/11 (二) 15:00 後<br>
+      <strong>退房：</strong>8/13 (四) 11:00 前<br>
+      <strong>訂房編號：</strong>5254.456.594<br>
+      <strong>PIN 碼：</strong>2657
+    </div>
+    <div style="margin-top:14px;">
+      <a class="ml" href="https://maps.google.com/?q=South+Vandeco+Hotel+Busan" target="_blank">📍 Google Maps</a>
+    </div>
+  </div>
+
+  <!-- Hotel 2 -->
+  <div class="card">
+    <div style="display:inline-block;background:var(--marine);color:white;font-size:10px;padding:2px 10px;border-radius:100px;letter-spacing:1px;margin-bottom:10px;">8/13 — 8/16 · 3 晚</div>
+    <div class="card-title">🌊 The Hew Kwan（廣安里民宿）</div>
+    <div class="card-subtitle">2層獨棟房屋 · 廣安里海灘區</div>
+    <div class="card-body">
+      位於釜山廣安里海灘附近的獨棟房屋，擁有寬敞露台，可欣賞廣安大橋與海景。<br><br>
+      <strong>地點：</strong>距廣安站步行 5 分鐘，距海灘步行 3 分鐘<br>
+      <strong>房型：</strong>2 層獨棟房屋（66 平方公尺）<br>
+      <strong>容納：</strong>最多 3 人<br>
+      <strong>設施：</strong>WiFi、行李寄存、寬敞露台<br>
+      <strong>評分：</strong>4.98/5（65 則評價）⭐<br>
+      <strong>預訂平台：</strong>Airbnb
+    </div>
+    <div style="margin-top:14px;">
+      <a class="ml" href="https://maps.google.com/?q=Gwangalli+Beach+Busan" target="_blank">📍 廣安里海灘區</a>
+      <a class="wl" href="https://www.airbnb.com.tw/rooms/1530968735610493865" target="_blank">🏠 Airbnb 房源</a>
+    </div>
+  </div>
+</div><!-- /transport -->
+
+<!-- ══════════════════════════════════════
+     TAB 4：注意事項
+══════════════════════════════════════ -->
+<div id="notes" class="section">
+  <div class="section-header">行前注意事項</div>
+
+  <div class="card">
+    <div class="card-title">📝 待辦事項</div>
+    <div class="card-body" style="font-size:13px;line-height:2.2;">
+      ☐ 確認護照效期（至少六個月以上）<br>
+      ☐ 購買旅遊保險<br>
+      ☐ 準備韓幣現金與信用卡<br>
+      ☐ 下載 Kakao Map、Naver Map、Papago 翻譯 App<br>
+      ☐ 預訂天空膠囊列車（Day 4）<br>
+      <span style="color:var(--marine);font-weight:500;">✓ 確認 Day 1-2 住宿（South Vandeco Hotel）</span><br>
+      <span style="color:var(--marine);font-weight:500;">✓ 預訂機場至飯店專車接送（KLOOK）</span><br>
+      <span style="color:var(--marine);font-weight:500;">✓ 確認廣安里民宿詳細資訊（The Hew Kwan）</span><br>
+      ☐ 規劃 Day 5 完整行程<br>
+      ☐ 確認其餘 10 個交通路線
+    </div>
+  </div>
+
+  <div style="height:16px"></div>
+
+  <div class="card">
+    <div class="card-title">💡 實用資訊</div>
+    <div class="card-body" style="font-size:13px;line-height:2.2;">
+      <strong>天氣：</strong>8月釜山氣溫約 24-30°C，建議攜帶防曬用品與薄外套（室內冷氣強）<br>
+      <strong>電壓：</strong>220V，需攜帶轉接頭（兩圓孔）<br>
+      <strong>時差：</strong>韓國比台灣快 1 小時<br>
+      <strong>語言：</strong>韓語為主，年輕人多能簡單英語溝通<br>
+      <strong>交通卡：</strong>建議購買 T-money 卡或使用韓國 Kakao T App<br>
+      <strong>網路：</strong>建議租借 Wi-Fi 分享器或購買上網 SIM 卡
+    </div>
+  </div>
+</div><!-- /notes -->
+
+</div><!-- /container -->
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleDay(card){
+  card.classList.toggle('open');
+}
+
+// Font size control
+function setFontSize(size){
+  document.body.className = document.body.className.replace(/font-\w+/g, '');
+  document.body.classList.add('font-' + size);
+
+  // Update button states
+  document.querySelectorAll('.font-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+
+  // Save to localStorage
+  localStorage.setItem('busan-font-size', size);
+}
+
+// Load saved font size on page load
+window.addEventListener('DOMContentLoaded', function(){
+  const savedSize = localStorage.getItem('busan-font-size') || 'medium';
+  document.body.classList.add('font-' + savedSize);
+
+  // Update button state
+  const buttons = document.querySelectorAll('.font-btn');
+  buttons.forEach(btn => btn.classList.remove('active'));
+  if(savedSize === 'small') buttons[0].classList.add('active');
+  else if(savedSize === 'medium') buttons[1].classList.add('active');
+  else if(savedSize === 'large') buttons[2].classList.add('active');
+});
+</script>
+</body>
+</html>
