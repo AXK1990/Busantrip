@@ -16,9 +16,9 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--ocean);color:var(--deep);font-family:'Noto Sans TC',sans-serif;font-weight:300;line-height:1.7;min-height:100vh;font-size:calc(16px * var(--font-scale));}
-body.font-small{--font-scale:0.95;}
-body.font-medium{--font-scale:1.1;}
-body.font-large{--font-scale:1.25;}
+body.font-medium{--font-scale:1.0;}
+body.font-large{--font-scale:1.4;}
+body.font-xlarge{--font-scale:1.7;}
 
 /* ── HERO ── */
 .hero{background:var(--deep);color:var(--ocean);padding:56px 24px 48px;text-align:center;position:relative;overflow:hidden;}
@@ -123,9 +123,9 @@ body.font-large{--font-scale:1.25;}
 <!-- FONT SIZE CONTROL -->
 <div class="font-control">
   <span class="font-control-label">字體大小：</span>
-  <button class="font-btn" onclick="setFontSize('small')">A-</button>
   <button class="font-btn active" onclick="setFontSize('medium')">A</button>
   <button class="font-btn" onclick="setFontSize('large')">A+</button>
+  <button class="font-btn" onclick="setFontSize('xlarge')">A++</button>
 </div>
 
 <!-- TABS -->
@@ -377,7 +377,7 @@ body.font-large{--font-scale:1.25;}
               <strong>備選方案：</strong>Old Mansion、濟州間、雪夜覓
             </div>
             <div class="tl-links">
-              <a class="ml" href="https://maps.google.com/?q=ON+DAM+온담+서면점+Busan" target="_blank">📍 ON DAM 西面店</a>
+              <a class="ml" href="https://maps.app.goo.gl/HHeGHgmvZkwNibsN7" target="_blank">📍 ON DAM 西面店</a>
               <a class="ml" href="https://maps.google.com/?q=Old+Mansion+Seomyeon+Busan" target="_blank">📍 Old Mansion（備選）</a>
             </div>
           </div>
@@ -837,7 +837,7 @@ body.font-large{--font-scale:1.25;}
       <div class="rest-name">ON DAM 온담 <span class="success-badge">8/12 已訂位</span></div>
       <div class="rest-desc">韓式烤肉｜現代韓式料理、優質烤肉，19:00 透過 Catch Table 預訂。</div>
       <div style="margin-top:6px;">
-        <a class="ml" href="https://maps.google.com/?q=ON+DAM+온담+서면점+Busan" target="_blank">📍 地址</a>
+        <a class="ml" href="https://maps.app.goo.gl/HHeGHgmvZkwNibsN7" target="_blank">📍 地址</a>
       </div>
     </div>
 
@@ -1138,12 +1138,12 @@ body.font-large{--font-scale:1.25;}
       ☐ 購買旅遊保險<br>
       ☐ 準備韓幣現金與信用卡<br>
       ☐ 下載 Kakao Map、Naver Map、Papago 翻譯 App<br>
-      ☐ 預訂天空膠囊列車（Day 4）<br>
+      ☐ 星期日之後 (8/9) 填寫 <a href="https://www.e-arrivalcard.go.kr/portal/main/index.do?locale=CH" target="_blank" style="color:var(--coral);text-decoration:none;">韓國電子入境卡 (e-Arrival Card)</a><br>
       <span style="color:var(--marine);font-weight:500;">✓ 確認 Day 1-2 住宿（South Vandeco Hotel）</span><br>
       <span style="color:var(--marine);font-weight:500;">✓ 預訂機場至飯店專車接送（KLOOK）</span><br>
       <span style="color:var(--marine);font-weight:500;">✓ 確認廣安里民宿詳細資訊（The Hew Kwan）</span><br>
-      ☐ 規劃 Day 5 完整行程<br>
-      ☐ 確認其餘 10 個交通路線
+      <span style="color:var(--marine);font-weight:500;">✓ 預訂天空膠囊列車（Day 4）</span><br>
+      ☐ 規劃 Day 5 完整行程
     </div>
   </div>
 
@@ -1155,9 +1155,7 @@ body.font-large{--font-scale:1.25;}
       <strong>天氣：</strong>8月釜山氣溫約 24-30°C，建議攜帶防曬用品與薄外套（室內冷氣強）<br>
       <strong>電壓：</strong>220V，需攜帶轉接頭（兩圓孔）<br>
       <strong>時差：</strong>韓國比台灣快 1 小時<br>
-      <strong>語言：</strong>韓語為主，年輕人多能簡單英語溝通<br>
-      <strong>交通卡：</strong>建議購買 T-money 卡或使用韓國 Kakao T App<br>
-      <strong>網路：</strong>建議租借 Wi-Fi 分享器或購買上網 SIM 卡
+      <strong>語言：</strong>韓語為主，年輕人多能簡單英語溝通
     </div>
   </div>
 </div><!-- /notes -->
@@ -1196,9 +1194,9 @@ window.addEventListener('DOMContentLoaded', function(){
   // Update button state
   const buttons = document.querySelectorAll('.font-btn');
   buttons.forEach(btn => btn.classList.remove('active'));
-  if(savedSize === 'small') buttons[0].classList.add('active');
-  else if(savedSize === 'medium') buttons[1].classList.add('active');
-  else if(savedSize === 'large') buttons[2].classList.add('active');
+  if(savedSize === 'medium') buttons[0].classList.add('active');
+  else if(savedSize === 'large') buttons[1].classList.add('active');
+  else if(savedSize === 'xlarge') buttons[2].classList.add('active');
 });
 </script>
 </body>
